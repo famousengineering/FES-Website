@@ -1,9 +1,11 @@
 /**
  * Technology Partners & Multi-Brand Engineering Support
  * Clear distinction: BLT is our authorized OEM partner in Pakistan,
- * while for all other global brands we provide independent multi-brand services, parts, repairs & modernization
+ * while for all other global brands we provide independent multi-brand services, parts, repairs & modernization.
+ * Certificate is rendered as a protected, watermarked image preview (no downloadable PDF).
  */
-import { ExternalLink, ShieldCheck, Award, Wrench, Cpu, CheckCircle2, FileText, AlertCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ExternalLink, ShieldCheck, Award, Wrench, CheckCircle2, AlertCircle, Eye, X, Lock } from "lucide-react";
 
 export interface SupportedBrand {
   id: string;
@@ -82,6 +84,27 @@ const SUPPORTED_BRANDS: SupportedBrand[] = [
 ];
 
 export default function TechPartners() {
+  const [showCertModal, setShowCertModal] = useState(false);
+
+  // Close modal on Escape key and manage body scroll lock
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowCertModal(false);
+    };
+
+    if (showCertModal) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showCertModal]);
+
   return (
     <section className="partners-section" id="partners" aria-labelledby="partners-heading">
       <div className="partners-wrapper">
@@ -132,15 +155,14 @@ export default function TechPartners() {
               </p>
 
               <div className="blt-action-row">
-                <a 
-                  href="/certificates/blt-authorization-certificate.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <button 
+                  type="button"
+                  onClick={() => setShowCertModal(true)} 
                   className="blt-cert-btn"
-                  title="View Official BLT Manufacturer Authorization Certificate"
+                  title="View Official Protected BLT Manufacturer Authorization Letter"
                 >
-                  <FileText size={16} /> View Authorization Certificate
-                </a>
+                  <Eye size={16} /> View Authorization Letter
+                </button>
                 <a 
                   href="https://www.bltelevator.com" 
                   target="_blank" 
@@ -287,6 +309,84 @@ export default function TechPartners() {
         </div>
 
       </div>
+
+      {/* PROTECTED AUTHORIZATION CERTIFICATE MODAL (Photo View Only - Anti-Tamper) */}
+      {showCertModal && (
+        <div 
+          className="cert-modal-backdrop" 
+          onClick={() => setShowCertModal(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Official BLT Manufacturer Authorization Letter"
+        >
+          <div 
+            className="cert-modal-window" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="cert-modal-header">
+              <div className="cert-modal-title-group">
+                <span className="cert-modal-badge">
+                  <ShieldCheck size={13} /> VERIFIED ORIGINAL DOCUMENT
+                </span>
+                <h4>BLT Manufacturer Authorization Letter</h4>
+                <span className="cert-modal-subtitle">
+                  Shenyang Yuanda Intellectual Industry Group Co., Ltd. • Famous Engineering Services
+                </span>
+              </div>
+              <button 
+                type="button" 
+                className="cert-modal-close" 
+                onClick={() => setShowCertModal(false)}
+                aria-label="Close Letter Preview"
+                title="Close (Esc)"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div 
+              className="cert-image-container"
+              onContextMenu={(e) => e.preventDefault()}
+            >
+              {/* Security Watermark Protection Layer */}
+              <div className="cert-security-overlay" aria-hidden="true">
+                <div className="watermark-grid">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <span key={i} className="watermark-text">
+                      FAMOUS ENGINEERING SERVICES • OFFICIAL VERIFICATION ONLY
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Protected Photo */}
+              <img 
+                src="/certificates/blt-authorization-certificate.jpg" 
+                alt="Official BLT Manufacturer Authorization Letter for Famous Engineering Services"
+                className="cert-protected-img"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </div>
+
+            <div className="cert-modal-footer">
+              <div className="cert-security-notice">
+                <Lock size={14} className="lock-icon" />
+                <span>
+                  <strong>Security Protected Document:</strong> Displayed exclusively for client verification and authenticity inspection. Direct downloading, tampering, or reproduction is strictly prohibited.
+                </span>
+              </div>
+              <button 
+                type="button" 
+                className="cert-close-btn" 
+                onClick={() => setShowCertModal(false)}
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
