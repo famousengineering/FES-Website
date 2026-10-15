@@ -16,9 +16,9 @@ export default function FaqSchema() {
         "Yes. FES maintains dedicated breakdown response teams for emergency elevator failures. Contact us at 0304-4943377 or reach out via WhatsApp for immediate assistance.",
     },
     {
-      question: "Which elevator manufacturers does FES represent?",
+      question: "Which elevator brand is FES an authorized partner for, and what brands do you service?",
       answer:
-        "FES is an authorized representative for BLT Brand Elevators (Shenyang Yuanda Intellectual Industry Group Co., Ltd.), as well as servicing Hyundai Elevator, Shanghai Mitsubishi, Linvol Elevator, Sigma, and other leading manufacturers. We provide genuine parts and factory-trained service.",
+        "Famous Engineering Services (FES) is an officially authorized partner in Pakistan for BLT Brand Elevators (Shenyang Yuanda Intellectual Industry Group Co., Ltd.) for equipment supply, certified installation, tenders, and factory warranty. For all other major international manufacturers — including Otis, Shanghai Mitsubishi, Hyundai, Schindler, Kone, Fuji, Sigma, and Thyssenkrupp — FES provides independent preventive maintenance (AMC), 24/7 emergency repairs, authentic spare parts, and modernization retrofits.",
     },
     {
       question: "What is an AMC and why does my building need one?",

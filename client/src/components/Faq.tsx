@@ -50,9 +50,9 @@ const FAQS: FaqItem[] = [
     id: "partners-blt",
     category: "Partners",
     categoryLabel: "Partners & Brands",
-    question: "Which elevator manufacturers does FES represent and service?",
+    question: "Which elevator brand is FES an authorized partner for, and what other brands do you service?",
     answer:
-      "FES is an authorized representative for BLT Brand Elevators (Shenyang Yuanda Intellectual Industry Group Co., Ltd., China). We also maintain extensive multi-brand service capability for Hyundai Elevator, Shanghai Mitsubishi, Sigma, Linvol, and other major international systems using genuine OEM parts.",
+      "FES is an officially authorized partner in Pakistan for BLT Brand Elevators (Shenyang Yuanda Intellectual Industry Group Co., Ltd., China) for new equipment supply, certified installation, tenders, and factory warranty. For all other major global brands — including Otis, Shanghai Mitsubishi, Hyundai, Schindler, Kone, Fuji, Sigma, and Thyssenkrupp — FES delivers independent technical maintenance (AMC), 24/7 emergency breakdown repairs, authentic spare parts sourcing, and comprehensive controller modernization.",
   },
   {
     id: "modernization-scope",
