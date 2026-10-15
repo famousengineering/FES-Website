@@ -1,0 +1,9 @@
+# FES — Famous Engineering Services
+# Official Website: https://www.famousengineering.pk
+# All public pages are open to search crawlers.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.famousengineering.pk/sitemap.xml
