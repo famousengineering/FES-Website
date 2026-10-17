@@ -2,19 +2,21 @@
  * Vercel serverless function: POST /api/inquiries
  *
  * Receives enquiries from the contact form and the AI consultant widget and
- * emails them to the FES team through Resend (https://resend.com) using plain
- * fetch — no extra dependency. Same request contract as server/index.ts so the
- * self-hosted Express server and this function are interchangeable.
+ * emails them to the FES team through Gmail SMTP (nodemailer). Same request
+ * contract as server/index.ts so the self-hosted Express server and this
+ * function are interchangeable.
  *
  * Required environment variables (Vercel → Project → Settings → Environment Variables):
- *   RESEND_API_KEY      Resend API key
- *   INQUIRY_TO_EMAIL    Recipient(s), comma-separated, e.g. "info@famousengineering.pk"
+ *   GMAIL_USER          Gmail address that sends the mail, e.g. "famousengineering.pk@gmail.com"
+ *   GMAIL_APP_PASSWORD  16-character Google "App password" for that account (NOT the normal
+ *                       Gmail password; needs 2-Step Verification turned on)
  * Optional:
- *   INQUIRY_FROM_EMAIL  Verified sender, default "FES Website <onboarding@resend.dev>"
+ *   INQUIRY_TO_EMAIL    Recipient(s), comma-separated. Defaults to GMAIL_USER.
  *
  * When delivery is not configured or fails, the function answers 503 so the
  * browser never shows a false "message recorded" and falls back to WhatsApp.
  */
+import nodemailer from "nodemailer";
 
 interface Req {
   method?: string;
@@ -125,12 +127,13 @@ export default async function handler(req: Req, res: Res) {
     return res.status(400).json({ ok: false, error: "Please enter a valid email address." });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = (process.env.INQUIRY_TO_EMAIL ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  const from = process.env.INQUIRY_FROM_EMAIL || "FES Website <onboarding@resend.dev>";
+  const gmailUser = process.env.GMAIL_USER?.trim();
+  // Google shows app passwords as "abcd efgh ijkl mnop"; the spaces are not part of the password.
+  const gmailPass = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
+  const to = (process.env.INQUIRY_TO_EMAIL || gmailUser || "").split(",").map((s) => s.trim()).filter(Boolean);
 
-  if (!apiKey || to.length === 0) {
-    console.error("[api/inquiries] RESEND_API_KEY / INQUIRY_TO_EMAIL not configured — enquiry NOT delivered.");
+  if (!gmailUser || !gmailPass || to.length === 0) {
+    console.error("[api/inquiries] GMAIL_USER / GMAIL_APP_PASSWORD not configured — enquiry NOT delivered.");
     return res.status(503).json({
       ok: false,
       error: "We couldn't send your request online right now. Please call or WhatsApp us directly.",
@@ -157,25 +160,22 @@ export default async function handler(req: Req, res: Res) {
     `</table>`;
 
   try {
-    const r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from,
-        to,
-        reply_to: email,
-        subject: `New enquiry: ${service} — ${name}`,
-        text,
-        html,
-      }),
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user: gmailUser, pass: gmailPass },
+      connectionTimeout: 10_000,
+      socketTimeout: 15_000,
     });
-    if (!r.ok) {
-      console.error("[api/inquiries] Resend rejected the email:", r.status, await r.text().catch(() => ""));
-      return res.status(503).json({
-        ok: false,
-        error: "We couldn't send your request online right now. Please call or WhatsApp us directly.",
-      });
-    }
+    await transporter.sendMail({
+      from: `"FES Website" <${gmailUser}>`,
+      to,
+      replyTo: email,
+      subject: `New enquiry: ${service} — ${name}`.replace(/[\r\n]+/g, " "),
+      text,
+      html,
+    });
     return res.status(201).json({ ok: true });
   } catch (error) {
     console.error("[api/inquiries] Email delivery failed:", error);

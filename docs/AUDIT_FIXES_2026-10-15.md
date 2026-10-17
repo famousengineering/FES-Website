@@ -4,13 +4,17 @@ Based on the audit of https://www.famousengineering.pk (see the full audit repor
 
 ## ⚠️ Action required before this goes live: enquiry email
 
-The contact form now posts to `POST /api/inquiries` (`api/inquiries.ts`, a Vercel serverless function) which emails the FES team through [Resend](https://resend.com). Add these in **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
+The contact form now posts to `POST /api/inquiries` (`api/inquiries.ts`, a Vercel serverless function) which emails the FES team through **Gmail SMTP** (nodemailer). Add these in **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
 
 | Variable | Required | Example |
 |---|---|---|
-| `RESEND_API_KEY` | yes | `re_xxx…` (Resend dashboard → API Keys) |
-| `INQUIRY_TO_EMAIL` | yes | `info@famousengineering.pk` (comma-separate for several) |
-| `INQUIRY_FROM_EMAIL` | optional | `FES Website <enquiries@famousengineering.pk>` — needs the domain verified in Resend. Default is Resend's shared `onboarding@resend.dev` sender, which can only deliver to the Resend account owner's own email until a domain is verified. |
+| `GMAIL_USER` | yes | The Gmail address that sends the mail, e.g. `famousengineering.pk@gmail.com` |
+| `GMAIL_APP_PASSWORD` | yes | 16-character Google **App password** (not the normal Gmail password) |
+| `INQUIRY_TO_EMAIL` | optional | Where enquiries are delivered (comma-separate for several). Defaults to `GMAIL_USER`. |
+
+How to get the app password: Google Account → Security → turn on **2-Step Verification** → search "App passwords" → create one (name it e.g. "FES website") → copy the 16 characters (spaces are ignored). Gmail allows roughly 500 sent emails/day for a normal account, far more than enquiry volume. Never commit this password to the repo; it lives only in Vercel's environment variables. If it ever leaks, delete that app password in Google and create a new one.
+
+Tested locally: with no/invalid credentials the function reaches Gmail, gets the login rejection and answers 503 (so the site shows the WhatsApp fallback). A successful send can only be confirmed with real credentials — submit one test enquiry after deploying.
 
 Until these are set the form **does not pretend to succeed**: the API answers 503 and the visitor sees an error with a ready-made "Send it on WhatsApp instead" link containing their details. No enquiry is silently lost any more.
 
