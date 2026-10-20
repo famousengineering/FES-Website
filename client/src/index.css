@@ -2259,7 +2259,10 @@ footer li a:hover { color:var(--amber); }
 @media (max-width:560px) { .footer-logo img { height:48px; } }
 
 /* Keyword intro under the hero: dark band so the hero flows into the page instead of ending on a white block. */
-.home-keyword-band { background:linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color:#fff; }
+.home-keyword-band { background:linear-gradient(180deg, var(--navy) 0%, #0b2536 50%, var(--navy) 100%); color:#fff; }
+/* The hero fades into the band's top colour, and the band ends on the next section's navy, so no hard edge shows. */
+.page-home .hero { overflow:hidden; } /* the scaled hero image otherwise pokes a few px below the hero as a light line */
+.page-home .hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:200px; z-index:-1; pointer-events:none; background:linear-gradient(180deg, rgba(8,28,43,0) 0%, rgba(8,28,43,.6) 55%, var(--navy) 100%); }
 .home-keyword-band .intro-section { padding-top:96px; padding-bottom:96px; }
 .home-keyword-band .eyebrow { color:#b9cbd3; }
 .home-keyword-band .intro-heading h2 { color:#fff; }
