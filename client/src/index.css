@@ -483,7 +483,9 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
 
 @media (max-width:620px) {
   .page-home .hero { min-height:100svh; height:auto; padding-bottom:40px; }
-  .page-home .hero-layout { min-height:0; height:auto; padding:85px 16px 30px; display:block; }
+  .page-home .hero-layout { min-height:0; height:auto; padding:48px 16px 30px; display:block; }
+  .page-home .hero-layout { padding-right:16px !important; } /* the desktop rule's !important 0 pushed the counter card off the right edge */
+  .page-home .hero-tint { background:linear-gradient(180deg, rgba(4,20,32,.9) 0%, rgba(4,20,32,.6) 40%, rgba(4,20,32,.68) 72%, rgba(4,20,32,.95) 100%); }
   .page-home .hero-copy { margin:0; padding:0; position:relative; z-index:2; }
   .page-home .hero-proof.hero-proof-clean { margin-top:16px; font-size:12px; }
   .page-home .hero-bottom-band { margin-top:16px; }
@@ -493,10 +495,10 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
     top:auto;
     right:auto;
     bottom:auto;
-    height:460px;
+    height:380px;
     width:100%;
-    max-width:320px;
-    margin:36px auto 0;
+    max-width:270px;
+    margin:28px auto 0;
     transform:none;
     opacity:1;
   }
