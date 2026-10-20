@@ -347,7 +347,6 @@ export default function Home() {
   return (
     <main id="main-content" className={`site-shell page-${page}`}>
       <a className="skip-link" href="#main-content">Skip to main content</a>
-      {page === "home" && <div className="page-shaft" aria-hidden="true" />}
       <div className="scroll-line" style={{ transform: `scaleX(${progress / 100})` }} />
 
       <div className={`door-transition ${doorState}`} aria-hidden="true">
