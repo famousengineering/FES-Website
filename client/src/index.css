@@ -2288,3 +2288,35 @@ footer li a:hover { color:var(--amber); }
 .home-keyword-band .section-rail i { background:rgba(255,255,255,.18); }
 .home-keyword-band .text-link { color:var(--amber-light); }
 .home-keyword-band .text-link:hover { color:#fff; }
+
+/* Phones: the hero lift's steel shaft carries on down the whole page, so the shaft scrolls with the page while the
+   cabin keeps travelling in the hero. Sits in the right margin, lines only, so text stays readable. */
+.page-shaft { display:none; }
+@media (max-width:620px) {
+  .page-home { position:relative; }
+  .page-shaft {
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    width:14px;
+    z-index:1;
+    pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(150,175,190,.6) 0 2px, transparent 2px calc(100% - 2px), rgba(150,175,190,.6) calc(100% - 2px) 100%),
+      repeating-linear-gradient(180deg, transparent 0 46px, rgba(150,175,190,.45) 46px 48px);
+    -webkit-mask-image:linear-gradient(180deg, transparent 0, transparent calc(100svh + 30px), #000 calc(100svh + 140px));
+    mask-image:linear-gradient(180deg, transparent 0, transparent calc(100svh + 30px), #000 calc(100svh + 140px));
+  }
+  /* amber landing marker on the rail every 576px (a "floor") */
+  .page-shaft::after {
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:-4px;
+    width:22px;
+    background:repeating-linear-gradient(180deg, transparent 0 570px, rgba(231,163,57,.85) 570px 576px);
+  }
+}
