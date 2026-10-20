@@ -74,25 +74,25 @@ const services = [
   {
     number: "01",
     icon: Wrench,
-    title: "Maintenance & AMC",
+    title: "Lift & Elevator Maintenance (AMC)",
     text: "Monthly preventive visits (or tailored to client demand), precision digital logs, and prompt breakdown support.",
   },
   {
     number: "02",
     icon: Building2,
-    title: "Supply & Installation",
+    title: "Lift & Elevator Supply and Installation",
     text: "Building-specific passenger, hospital and freight systems delivered with discipline.",
   },
   {
     number: "03",
     icon: MoveUp,
-    title: "Modernization",
+    title: "Lift Modernization",
     text: "Controllers, drives, doors and cabin upgrades that renew reliability without disruption.",
   },
   {
     number: "04",
     icon: CircleGauge,
-    title: "Escalator Service",
+    title: "Escalator & Travelator Service",
     text: "Specialist care for high-traffic escalators, travelators and moving walkways.",
   },
 ];
@@ -398,9 +398,9 @@ export default function Home() {
           <div className="hero-grain" />
           <div className="hero-layout">
             <div className="hero-copy">
-              <Eyebrow light>Famous Engineering Services</Eyebrow>
+              <Eyebrow light>FES · Lifts, Elevators &amp; Escalators</Eyebrow>
               <h1>Every floor,<br /><em>accounted for.</em></h1>
-              <p className="hero-intro">Precision installation, intelligent maintenance and responsive technical support for the buildings Pakistan depends on.</p>
+              <p className="hero-intro">Lift, elevator, escalator and travelator installation, maintenance and 24/7 breakdown service for the buildings Pakistan depends on.</p>
               <div className="hero-actions">
                 <button className="button button-amber" onClick={() => navigate("contact")}>Plan your site assessment <ArrowUpRight size={17} /></button>
                 <button className="text-link text-link-light" onClick={() => navigate("services")}>Explore our services <ArrowDownRight size={18} /></button>
@@ -488,6 +488,24 @@ export default function Home() {
             <div><strong>75+</strong><span>Active client sites</span></div>
             <div><strong>25+</strong><span>Technical specialists</span></div>
             <div><strong>2010</strong><span>Engineering since</span></div>
+          </div>
+        </section>
+      )}
+
+      {page === "home" && (
+        <section className="intro-section" aria-labelledby="home-keywords">
+          <div className="section-rail rail-intro" aria-hidden="true"><span>FES</span><i /><span>PK</span></div>
+          <div className="section-number">01</div>
+          <div className="intro-heading">
+            <Eyebrow>Lifts, elevators, escalators &amp; travelators</Eyebrow>
+            <h2 id="home-keywords">Vertical transportation, installed and <span>maintained</span> across Pakistan.</h2>
+          </div>
+          <div className="intro-body">
+            <p>Famous Engineering Services (FES) installs, maintains, repairs and modernizes lifts, elevators, escalators and travelators (moving walkways) for hospitals, malls, offices, hotels, universities and residential buildings. Our vertical transportation service covers passenger, hospital and freight lifts, with monthly preventive maintenance contracts (AMC) and 24/7 breakdown response.</p>
+            <p>From new lift installation and elevator modernization to escalator maintenance and genuine spare parts, our engineers service all major brands. FES is an authorized BLT elevator partner in Pakistan, with offices in Rawalpindi, Islamabad and Lahore.</p>
+            <a className="text-link" {...linkProps("services", "services")}>Lift &amp; elevator services <ArrowUpRight size={18} /></a>
+            {" "}
+            <a className="text-link" {...linkProps("escalators", "escalators")}>Escalators &amp; travelators <ArrowUpRight size={18} /></a>
           </div>
         </section>
       )}

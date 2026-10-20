@@ -46,10 +46,10 @@ const OFFICES = [
 
 // Plain-text mirrors of copy that lives inside React components (kept short; update with the components).
 const SERVICES = [
-  ["Maintenance & AMC", "Monthly preventive visits (or tailored to client demand), precision digital logs, and prompt breakdown support."],
-  ["Supply & Installation", "Building-specific passenger, hospital and freight systems delivered with discipline."],
-  ["Modernization", "Controllers, drives, doors and cabin upgrades that renew reliability without disruption."],
-  ["Escalator Service", "Specialist care for high-traffic escalators, travelators and moving walkways."],
+  ["Lift & Elevator Maintenance (AMC)", "Monthly preventive visits (or tailored to client demand), precision digital logs, and prompt breakdown support."],
+  ["Lift & Elevator Supply and Installation", "Building-specific passenger, hospital and freight systems delivered with discipline."],
+  ["Lift Modernization", "Controllers, drives, doors and cabin upgrades that renew reliability without disruption."],
+  ["Escalator & Travelator Service", "Specialist care for high-traffic escalators, travelators and moving walkways."],
 ];
 const INDUSTRIES = [
   "Hospitals & Medical",
@@ -89,6 +89,9 @@ function snapshot(page: Page | "notfound"): string {
     if (page === "home") {
       body +=
         `<p>Since 2010 · 300+ units under care · 75+ active client sites · 25+ technical specialists.</p>` +
+        `<h2>Vertical transportation, installed and maintained across Pakistan.</h2>` +
+        `<p>Famous Engineering Services (FES) installs, maintains, repairs and modernizes lifts, elevators, escalators and travelators (moving walkways) for hospitals, malls, offices, hotels, universities and residential buildings. Our vertical transportation service covers passenger, hospital and freight lifts, with monthly preventive maintenance contracts (AMC) and 24/7 breakdown response.</p>` +
+        `<p>From new lift installation and elevator modernization to escalator maintenance and genuine spare parts, our engineers service all major brands. FES is an authorized BLT elevator partner in Pakistan, with offices in Rawalpindi, Islamabad and Lahore.</p>` +
         `<h2>What we do</h2><ul>${SERVICES.map(([t, d]) => `<li><b>${esc(t)}</b> — ${esc(d)}</li>`).join("")}</ul>` +
         `<p><a href="/contact">Plan your site assessment</a> · <a href="/services">Explore our services</a></p>`;
     }

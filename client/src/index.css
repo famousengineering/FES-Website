@@ -2182,3 +2182,12 @@ a.brand { display: flex; }
 .mobile-nav a { align-items: center; }
 .skip-link { position: absolute; left: -9999px; top: 8px; z-index: 1000; background: #fff; color: #081c2b; padding: 10px 16px; font-weight: 700; border-radius: 4px; }
 .skip-link:focus { left: 12px; }
+
+/* Between the mobile menu (<=900px) and wide desktop, the full nav + phone + quote button overflow the header. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .brand-logo-pill img { max-width: 330px; height: auto; }
+  .desktop-nav { gap: 12px; }
+  .desktop-nav a { font-size: 13.5px; }
+  .nav-action .phone-link span { display: none; }
+  .nav-action .button-small { padding: 11px 13px; font-size: 13px; }
+}
