@@ -93,6 +93,9 @@ function snapshot(page: Page | "notfound"): string {
         `<p>Famous Engineering Services (FES) installs, maintains, repairs and modernizes lifts, elevators, escalators and travelators (moving walkways) for hospitals, malls, offices, hotels, universities and residential buildings. Our vertical transportation service covers passenger, hospital and freight lifts, with monthly preventive maintenance contracts (AMC) and 24/7 breakdown response.</p>` +
         `<p>From new lift installation and elevator modernization to escalator maintenance and genuine spare parts, our engineers service all major brands. FES is an authorized BLT elevator partner in Pakistan, with offices in Rawalpindi, Islamabad and Lahore.</p>` +
         `<h2>What we do</h2><ul>${SERVICES.map(([t, d]) => `<li><b>${esc(t)}</b> — ${esc(d)}</li>`).join("")}</ul>` +
+        `<h2>Trusted in hospitals, universities and towers.</h2><ul>${["afic", "mcb-center", "nust-university", "bahria-university", "giga-city", "inmol-hospital"].map((id) => PROJECTS.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p)).map((p) => `<li>${esc(p.title)} — ${esc(p.location)}</li>`).join("")}</ul>` +
+        `<p>Authorized BLT elevator partner in Pakistan. We also maintain and repair Hyundai, Sigma, Kone, Schindler, Otis, Mitsubishi, Fuji and Thyssenkrupp lifts.</p>` +
+        `<h2>Need a lift installed, serviced or modernized?</h2><p>Tell us about your building. We will arrange a site assessment and a clear quotation.</p>` +
         `<p><a href="/contact">Plan your site assessment</a> · <a href="/services">Explore our services</a></p>`;
     }
     if (page === "services" || page === "escalators") {

@@ -129,6 +129,16 @@ const NAV_ITEMS: { label: string; page: Page }[] = [
   { label: "Contact", page: "contact" },
 ];
 
+const OFFICES = [
+  { city: "Rawalpindi", address: "Office #226, 2nd Floor, Rawal Mall and Residencia, Main Murree Road, Rawalpindi", map: "https://www.google.com/maps/search/?api=1&query=Rawal+Mall+and+Residencia+Rawalpindi" },
+  { city: "Islamabad", address: "Office #06, First Floor, Al Kashif Plaza, G-10 Markaz, Islamabad", map: "https://www.google.com/maps/search/?api=1&query=Al+Kashif+Plaza+G10+Markaz+Islamabad" },
+  { city: "Lahore", address: "Office No. M1-89, Aashiana Center, Main Boulevard, near Liberty Chowk, Lahore", map: "https://www.google.com/maps/search/?api=1&query=Aashiana+Center+Liberty+Chowk+Lahore" },
+];
+
+const FEATURED_PROJECT_IDS = ["afic", "mcb-center", "nust-university", "bahria-university", "giga-city", "inmol-hospital"];
+const SERVICED_BRANDS = ["Hyundai", "Sigma", "Kone", "Schindler", "Otis", "Mitsubishi", "Fuji", "Thyssenkrupp"];
+const GOOGLE_REVIEW_URL = "https://g.page/r/Ca4tEhdaxNYmEBM/review";
+
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
 export default function Home() {
@@ -510,6 +520,72 @@ export default function Home() {
         </section>
       )}
 
+      {page === "home" && (
+        <>
+          <section className="home-services" aria-labelledby="home-services-title">
+            <div className="home-wrap">
+              <Eyebrow light>What we do</Eyebrow>
+              <h2 id="home-services-title">Lifecycle care for lifts, elevators &amp; escalators.</h2>
+              <div className="home-service-grid">
+                {services.map((service) => {
+                  const Icon = service.icon;
+                  const target: Page = service.number === "04" ? "escalators" : "services";
+                  return (
+                    <a className="home-service-card" key={service.number} {...linkProps(target, target)}>
+                      <span className="home-service-icon"><Icon size={24} strokeWidth={1.6} /></span>
+                      <h3>{service.title}</h3>
+                      <p>{service.text}</p>
+                      <span className="home-card-link">Learn more <ArrowUpRight size={16} /></span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="home-projects" aria-labelledby="home-projects-title">
+            <div className="home-wrap">
+              <Eyebrow>Our work</Eyebrow>
+              <h2 id="home-projects-title">Trusted in hospitals, universities and towers.</h2>
+              <div className="home-project-grid">
+                {FEATURED_PROJECT_IDS.map((id) => PROJECTS.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p)).map((p) => (
+                  <a className="home-project-card" key={p.id} {...linkProps("projects", "projects")}>
+                    <img src={p.photo} alt={`${p.title}, ${p.location}`} loading="lazy" width={600} height={400} />
+                    <span className="home-project-meta">
+                      <b>{p.title}</b>
+                      <small>{p.location} · {p.category}</small>
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <a className="text-link home-all-projects" {...linkProps("projects", "projects")}>View all {PROJECTS.length} projects <ArrowUpRight size={18} /></a>
+            </div>
+          </section>
+
+          <section className="home-brands" aria-label="Authorized partner and serviced brands">
+            <div className="home-wrap">
+              <p><strong>Authorized BLT elevator partner</strong> in Pakistan. We also maintain and repair:</p>
+              <ul>
+                {SERVICED_BRANDS.map((b) => <li key={b}>{b}</li>)}
+              </ul>
+            </div>
+          </section>
+
+          <section className="home-cta" aria-labelledby="home-cta-title">
+            <div className="home-wrap">
+              <h2 id="home-cta-title">Need a lift installed, serviced or modernized?</h2>
+              <p>Tell us about your building. We will arrange a site assessment and a clear quotation.</p>
+              <div className="home-cta-actions">
+                <a className="button button-amber" {...linkProps("contact", "contact")}>Request a quote <ArrowUpRight size={17} /></a>
+                <a className="button button-ghost" href="tel:+92514943377"><Phone size={16} /> 051 4943377</a>
+                <a className="button button-ghost" href="https://wa.me/923044943377?text=Hello%20FES%2C%20I%20would%20like%20to%20inquire%20about%20elevator%20services." target="_blank" rel="noreferrer">WhatsApp</a>
+              </div>
+              <a className="home-review-link" href={GOOGLE_REVIEW_URL} target="_blank" rel="noreferrer">Worked with FES? Leave us a Google review ↗</a>
+            </div>
+          </section>
+        </>
+      )}
+
 
       {page === "about" && (
         <section className="intro-section" id="company">
@@ -633,14 +709,17 @@ export default function Home() {
             <div className="contact-details">
               <a href="tel:+923044943377"><Phone size={17} /> 0304 4943377</a>
               <a href="mailto:famousengineering.pk@gmail.com"><Mail size={17} /> famousengineering.pk@gmail.com</a>
-              <span>Rawalpindi · Islamabad · Lahore · Pakistan</span>
-              <span>Office #226, 2nd Floor, Rawal Mall and Residencia, Main Murree Road, Rawalpindi</span>
-              <span>Office #06, First Floor, Al Kashif Plaza, G-10 Markaz, Islamabad</span>
-              <span>Office No. M1-89, Aashiana Center, Main Boulevard, near Liberty Chowk, Lahore</span>
-              <a href="https://www.google.com/maps/search/?api=1&query=Rawal+Mall+and+Residencia+Rawalpindi" target="_blank" rel="noreferrer">Open Rawalpindi map ↗</a>
-              <a href="https://www.google.com/maps/search/?api=1&query=Al+Kashif+Plaza+G10+Markaz+Islamabad" target="_blank" rel="noreferrer">Open Islamabad map ↗</a>
-              <a href="https://www.google.com/maps/search/?api=1&query=Aashiana+Center+Liberty+Chowk+Lahore" target="_blank" rel="noreferrer">Open Lahore map ↗</a>
+              <a href="tel:+92514943377"><Phone size={17} /> 051 4943377 (PTCL)</a>
               <a href="https://wa.me/923044943377" target="_blank" rel="noreferrer">WhatsApp FES ↗</a>
+            </div>
+            <div className="office-cards">
+              {OFFICES.map((o) => (
+                <article className="office-card" key={o.city}>
+                  <h3>{o.city}</h3>
+                  <p>{o.address}</p>
+                  <a href={o.map} target="_blank" rel="noreferrer">Open {o.city} map ↗</a>
+                </article>
+              ))}
             </div>
           </div>
           <form className="contact-form" onSubmit={handleForm}>
@@ -685,18 +764,41 @@ export default function Home() {
       {page === "about" && <Faq />}
 
       <footer>
-        <div className="footer-main">
-          <div className="footer-brand">
-            <span className="brand-logo-pill">
-              <img src={ASSETS.logo} alt="Famous Engineering Services" />
-            </span>
+        <div className="footer-cols">
+          <div className="footer-brand-col">
+            <div className="footer-brand">
+              <span className="brand-logo-pill">
+                <img src={ASSETS.logo} alt="Famous Engineering Services" width={430} height={50} />
+              </span>
+            </div>
+            <p>Lift, elevator and escalator installation, maintenance and modernization across Pakistan. Authorized BLT elevator partner. Serving since 2010.</p>
           </div>
-          <p>Precision-first vertical transportation care for modern buildings across Pakistan.</p>
-          <nav className="footer-links" aria-label="Footer navigation">
-            {NAV_ITEMS.map(({ label, page: target }) => (
-              <a key={target} {...linkProps(target, target)}>{label}</a>
-            ))}
+          <nav aria-label="Footer navigation">
+            <h3>Explore</h3>
+            <ul>
+              {NAV_ITEMS.map(({ label, page: target }) => (
+                <li key={target}><a {...linkProps(target, target)}>{label}</a></li>
+              ))}
+              <li><a {...linkProps("escalators", "escalators")}>Escalators &amp; travelators</a></li>
+            </ul>
           </nav>
+          <div>
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:+92514943377">051 4943377 (PTCL)</a></li>
+              <li><a href="tel:+923044943377">0304 4943377</a></li>
+              <li><a href="https://wa.me/923044943377" target="_blank" rel="noreferrer">WhatsApp</a></li>
+              <li><a href="mailto:famousengineering.pk@gmail.com">famousengineering.pk@gmail.com</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Offices</h3>
+            <ul>
+              {OFFICES.map((o) => (
+                <li key={o.city}><b>{o.city}</b><span>{o.address}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="footer-bottom"><span>© 2026 FES. All rights reserved.</span><span>Reliable movement, engineered.</span></div>
       </footer>
