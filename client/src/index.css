@@ -482,23 +482,26 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
 }
 
 @media (max-width:620px) {
-  .page-home .hero { min-height:100svh; height:auto; padding-bottom:95px; }
+  .page-home .hero { min-height:100svh; height:auto; padding-bottom:40px; }
   .page-home .hero-layout { min-height:0; height:auto; padding:85px 16px 30px; display:block; }
   .page-home .hero-copy { margin:0; padding:0; position:relative; z-index:2; }
   .page-home .hero-proof.hero-proof-clean { margin-top:16px; font-size:12px; }
   .page-home .hero-bottom-band { margin-top:16px; }
+  /* Mobile: the lift animation is a full-size, touchable block under the counter instead of a faint ghost behind the text. */
   .page-home .restored-lift-stage {
-    position:absolute;
+    position:relative;
     top:auto;
-    bottom:20px;
-    right:-30px;
-    height:60%;
-    width:240px;
-    transform:scale(.48);
-    transform-origin:right bottom;
-    opacity:.32;
-    pointer-events:none;
+    right:auto;
+    bottom:auto;
+    height:460px;
+    width:100%;
+    max-width:320px;
+    margin:36px auto 0;
+    transform:none;
+    opacity:1;
   }
+  .page-home .restored-lift-stage .standalone-lift-canvas { inset:0; }
+  .page-home .restored-lift-stage .lift-status { right:auto; }
 }
 
 /* Ensure clean safe scroll area on all sections for floating action buttons */
