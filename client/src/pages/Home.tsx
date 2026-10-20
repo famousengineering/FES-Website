@@ -766,11 +766,9 @@ export default function Home() {
       <footer>
         <div className="footer-cols">
           <div className="footer-brand-col">
-            <div className="footer-brand">
-              <span className="brand-logo-pill">
-                <img src={ASSETS.logo} alt="Famous Engineering Services" width={430} height={50} />
-              </span>
-            </div>
+            <a className="footer-logo" {...linkProps("top", "home")} aria-label="Famous Engineering Services — home">
+              <img src="/branding/FES_Logo_Footer.png" alt="Famous Engineering Services" width={380} height={64} loading="lazy" />
+            </a>
             <p>Lift, elevator and escalator installation, maintenance and modernization across Pakistan. Authorized BLT elevator partner. Serving since 2010.</p>
           </div>
           <nav aria-label="Footer navigation">
