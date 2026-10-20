@@ -23,6 +23,7 @@ import {
   Clock3,
   Menu,
   MoveUp,
+  Mail,
   Phone,
   ShieldCheck,
   Wrench,
@@ -613,6 +614,7 @@ export default function Home() {
             <p>Tell us about your building, system or service requirement. A technical team member will get back to you with the right next step.</p>
             <div className="contact-details">
               <a href="tel:+923044943377"><Phone size={17} /> 0304 4943377</a>
+              <a href="mailto:famousengineering.pk@gmail.com"><Mail size={17} /> famousengineering.pk@gmail.com</a>
               <span>Rawalpindi · Islamabad · Lahore · Pakistan</span>
               <span>Office #226, 2nd Floor, Rawal Mall and Residencia, Main Murree Road, Rawalpindi</span>
               <span>Office #06, First Floor, Al Kashif Plaza, G-10 Markaz, Islamabad</span>

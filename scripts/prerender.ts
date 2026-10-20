@@ -114,7 +114,7 @@ function snapshot(page: Page | "notfound"): string {
     }
     if (page === "contact") {
       body +=
-        `<p>Call <a href="tel:+923044943377">${PHONE_DISPLAY}</a> or <a href="https://wa.me/923044943377">message us on WhatsApp</a>.</p>` +
+        `<p>Call <a href="tel:+923044943377">${PHONE_DISPLAY}</a> or <a href="https://wa.me/923044943377">message us on WhatsApp</a>. Email <a href="mailto:famousengineering.pk@gmail.com">famousengineering.pk@gmail.com</a>.</p>` +
         `<ul>${OFFICES.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>`;
     }
   }
