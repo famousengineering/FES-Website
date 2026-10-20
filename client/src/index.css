@@ -489,20 +489,19 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
   .page-home .hero-copy { margin:0; padding:0; position:relative; z-index:2; }
   .page-home .hero-proof.hero-proof-clean { margin-top:16px; font-size:12px; }
   .page-home .hero-bottom-band { margin-top:16px; }
-  /* Mobile: the lift runs the full height of the hero on the right, slightly tilted and partly off-screen, fading out
+  /* Mobile: the lift runs the full height of the hero on the right, standing straight and partly off-screen, fading out
      towards the left so the text keeps its room. Floor buttons, readout and status tag are hidden here (backdrop only). */
   .page-home .restored-lift-stage {
     position:absolute;
     top:50px;
     bottom:24px;
-    right:-128px;
+    right:-100px;
     left:auto;
     width:340px;
     height:auto;
     max-width:none;
     margin:0;
-    transform:rotate(4deg);
-    transform-origin:60% 50%;
+    transform:none;
     opacity:1;
     z-index:1;
     pointer-events:none;
@@ -511,6 +510,7 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
   }
   .page-home .restored-lift-stage .standalone-lift-canvas { inset:0; }
   .page-home .hero-copy { text-shadow:0 2px 14px rgba(4,20,32,.9); }
+  .page-home .hero-center-counter .counter-card { background:rgba(13,43,65,.62); } /* lets the cabin stay visible behind the counter */
   .page-home .restored-lift-stage .shaft-floor,
   .page-home .restored-lift-stage .restored-readout,
   .page-home .restored-lift-stage .lift-status { display:none; }
