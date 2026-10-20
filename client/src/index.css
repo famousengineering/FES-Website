@@ -2290,7 +2290,8 @@ footer li a:hover { color:var(--amber); }
 .home-keyword-band .text-link:hover { color:#fff; }
 
 /* Phones: the hero lift's steel shaft carries on down the whole page, so the shaft scrolls with the page while the
-   cabin keeps travelling in the hero. Sits in the right margin, lines only, so text stays readable. */
+   cabin keeps travelling in the hero. Same 110px width as the hero shaft; steel columns, floor slabs and a faint glass
+   body, all semi-transparent so text above/below stays readable. */
 .page-shaft { display:none; }
 @media (max-width:620px) {
   .page-home { position:relative; }
@@ -2300,12 +2301,18 @@ footer li a:hover { color:var(--amber); }
     top:0;
     bottom:0;
     right:0;
-    width:14px;
+    width:110px;
     z-index:1;
     pointer-events:none;
     background:
-      linear-gradient(90deg, rgba(150,175,190,.6) 0 2px, transparent 2px calc(100% - 2px), rgba(150,175,190,.6) calc(100% - 2px) 100%),
-      repeating-linear-gradient(180deg, transparent 0 46px, rgba(150,175,190,.45) 46px 48px);
+      /* columns: dark steel with a light edge */
+      linear-gradient(90deg, rgba(190,210,220,.4) 0 1px, rgba(70,95,112,.42) 1px 4px, transparent 4px calc(100% - 4px), rgba(70,95,112,.42) calc(100% - 4px) calc(100% - 1px), rgba(190,210,220,.4) calc(100% - 1px) 100%),
+      /* centre guide rail */
+      linear-gradient(90deg, transparent calc(50% - 1px), rgba(150,175,190,.18) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+      /* floor slabs every 192px: light top edge + dark body */
+      repeating-linear-gradient(180deg, transparent 0 187px, rgba(190,210,220,.35) 187px 188px, rgba(70,95,112,.4) 188px 191px, transparent 191px 192px),
+      /* faint glass body */
+      linear-gradient(90deg, rgba(120,160,190,.07), rgba(120,160,190,.03));
     -webkit-mask-image:linear-gradient(180deg, transparent 0, transparent calc(100svh + 30px), #000 calc(100svh + 140px));
     mask-image:linear-gradient(180deg, transparent 0, transparent calc(100svh + 30px), #000 calc(100svh + 140px));
   }
@@ -2315,8 +2322,8 @@ footer li a:hover { color:var(--amber); }
     position:absolute;
     top:0;
     bottom:0;
-    left:-4px;
-    width:22px;
-    background:repeating-linear-gradient(180deg, transparent 0 570px, rgba(231,163,57,.85) 570px 576px);
+    left:-1px;
+    width:6px;
+    background:repeating-linear-gradient(180deg, transparent 0 570px, rgba(231,163,57,.9) 570px 582px);
   }
 }
