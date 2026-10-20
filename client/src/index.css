@@ -325,7 +325,8 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
 
 /* Home hero: single-screen composition requested by the user. */
 .page-home .stats-band { display:none; }
-.page-home .hero { min-height:0; height:calc(100svh - 80px); }
+/* max(): on short screens the hero grows to fit its content instead of spilling onto the next section. */
+.page-home .hero { min-height:0; height:max(calc(100svh - 80px), 800px); }
 .page-home .hero-layout {
   min-height:0;
   height:calc(100% - 47px);
@@ -2256,3 +2257,16 @@ footer li a:hover { color:var(--amber); }
 .footer-logo { display:inline-block; line-height:0; }
 .footer-logo img { display:block; width:auto; height:56px; max-width:100%; }
 @media (max-width:560px) { .footer-logo img { height:48px; } }
+
+/* Keyword intro under the hero: dark band so the hero flows into the page instead of ending on a white block. */
+.home-keyword-band { background:linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color:#fff; }
+.home-keyword-band .intro-section { padding-top:96px; padding-bottom:96px; }
+.home-keyword-band .eyebrow { color:#b9cbd3; }
+.home-keyword-band .intro-heading h2 { color:#fff; }
+.home-keyword-band .intro-heading h2 span { color:var(--amber-light); }
+.home-keyword-band .intro-body p { color:#c5d3d7; }
+.home-keyword-band .section-number { color:var(--amber); }
+.home-keyword-band .section-rail { color:#7f97a2; }
+.home-keyword-band .section-rail i { background:rgba(255,255,255,.18); }
+.home-keyword-band .text-link { color:var(--amber-light); }
+.home-keyword-band .text-link:hover { color:#fff; }

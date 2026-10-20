@@ -410,7 +410,7 @@ export default function Home() {
             <div className="hero-copy">
               <Eyebrow light>FES · Lifts, Elevators &amp; Escalators</Eyebrow>
               <h1>Every floor,<br /><em>accounted for.</em></h1>
-              <p className="hero-intro">Lift, elevator, escalator and travelator installation, maintenance and 24/7 breakdown service for the buildings Pakistan depends on.</p>
+              <p className="hero-intro">Lift, elevator, escalator and travelator installation, maintenance and 24/7 service across Pakistan.</p>
               <div className="hero-actions">
                 <button className="button button-amber" onClick={() => navigate("contact")}>Plan your site assessment <ArrowUpRight size={17} /></button>
                 <button className="text-link text-link-light" onClick={() => navigate("services")}>Explore our services <ArrowDownRight size={18} /></button>
@@ -503,6 +503,7 @@ export default function Home() {
       )}
 
       {page === "home" && (
+        <div className="home-keyword-band">
         <section className="intro-section" aria-labelledby="home-keywords">
           <div className="section-rail rail-intro" aria-hidden="true"><span>FES</span><i /><span>PK</span></div>
           <div className="section-number">01</div>
@@ -518,6 +519,7 @@ export default function Home() {
             <a className="text-link" {...linkProps("escalators", "escalators")}>Escalators &amp; travelators <ArrowUpRight size={18} /></a>
           </div>
         </section>
+        </div>
       )}
 
       {page === "home" && (

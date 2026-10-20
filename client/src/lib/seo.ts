@@ -33,7 +33,7 @@ export const PAGE_SEO: Record<Page, PageSeo> = {
       "Lift, elevator, escalator and travelator installation, maintenance (AMC) and 24/7 breakdown service across Pakistan. Offices in Rawalpindi, Islamabad and Lahore.",
     heading: "Every floor, accounted for.",
     intro:
-      "Lift, elevator, escalator and travelator installation, maintenance and 24/7 breakdown service for the buildings Pakistan depends on. Serving Pakistan since 2010 from offices in Rawalpindi, Islamabad and Lahore.",
+      "Lift, elevator, escalator and travelator installation, maintenance and 24/7 service across Pakistan. Serving Pakistan since 2010 from offices in Rawalpindi, Islamabad and Lahore.",
   },
   services: {
     title: "Lift & Elevator Maintenance, Installation & Modernization | FES",
