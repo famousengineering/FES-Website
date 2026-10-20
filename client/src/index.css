@@ -489,21 +489,31 @@ footer { background:#061721; color:#d5e0e3; padding:45px max(22px,calc((100vw - 
   .page-home .hero-copy { margin:0; padding:0; position:relative; z-index:2; }
   .page-home .hero-proof.hero-proof-clean { margin-top:16px; font-size:12px; }
   .page-home .hero-bottom-band { margin-top:16px; }
-  /* Mobile: the lift animation is a full-size, touchable block under the counter instead of a faint ghost behind the text. */
+  /* Mobile: the lift runs the full height of the hero on the right, slightly tilted and partly off-screen, fading out
+     towards the left so the text keeps its room. Floor buttons, readout and status tag are hidden here (backdrop only). */
   .page-home .restored-lift-stage {
-    position:relative;
-    top:auto;
-    right:auto;
-    bottom:auto;
-    height:380px;
-    width:100%;
-    max-width:270px;
-    margin:28px auto 0;
-    transform:none;
+    position:absolute;
+    top:50px;
+    bottom:24px;
+    right:-128px;
+    left:auto;
+    width:340px;
+    height:auto;
+    max-width:none;
+    margin:0;
+    transform:rotate(4deg);
+    transform-origin:60% 50%;
     opacity:1;
+    z-index:1;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 38%);
+    mask-image:linear-gradient(90deg, transparent 0%, #000 38%);
   }
   .page-home .restored-lift-stage .standalone-lift-canvas { inset:0; }
-  .page-home .restored-lift-stage .lift-status { right:auto; }
+  .page-home .hero-copy { text-shadow:0 2px 14px rgba(4,20,32,.9); }
+  .page-home .restored-lift-stage .shaft-floor,
+  .page-home .restored-lift-stage .restored-readout,
+  .page-home .restored-lift-stage .lift-status { display:none; }
 }
 
 /* Ensure clean safe scroll area on all sections for floating action buttons */
